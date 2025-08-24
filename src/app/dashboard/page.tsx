@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import {
-  Activity,
-  ArrowUpRight,
   FileText,
   FileSignature,
   Linkedin,
@@ -10,9 +8,7 @@ import {
   UserSquare,
   Trophy,
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Analytics } from '@/components/analytics';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const featureCards = [
   {
@@ -62,7 +58,6 @@ const featureCards = [
 export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-4">
-      <Analytics />
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {featureCards.map((card) => (
           <Card key={card.href} className="hover:border-primary/80 hover:shadow-md transition-all">
