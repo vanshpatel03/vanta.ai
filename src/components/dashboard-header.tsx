@@ -1,25 +1,21 @@
+"use client"
+
 import Link from "next/link"
+import { usePathname } from 'next/navigation'
 import {
   FileText,
+  FileSignature,
   Linkedin,
   PanelLeft,
   Settings,
-  FileSignature,
   MessageSquareQuote,
   CalendarCheck,
   UserSquare,
   Trophy,
-  LayoutDashboard
+  LayoutDashboard,
 } from "lucide-react"
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -29,128 +25,110 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { Logo } from "./logo"
 
-export function DashboardHeader({ breadcrumb }: { breadcrumb?: string }) {
+const navItems = [
+  { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard", exact: true },
+  { href: "/dashboard/resume-builder", icon: FileText, label: "Resume Builder" },
+  { href: "/dashboard/cover-letter-builder", icon: FileSignature, label: "Cover Letter Builder" },
+  { href: "/dashboard/linkedin-optimizer", icon: UserSquare, label: "LinkedIn Optimizer" },
+  { href: "/dashboard/linkedin-outreach", icon: Linkedin, label: "LinkedIn Outreach" },
+  { href: "/dashboard/interview-prep", icon: MessageSquareQuote, label: "Interview Prep" },
+  { href: "/dashboard/career-plan", icon: CalendarCheck, label: "Career Plan" },
+  { href: "/dashboard/community", icon: Trophy, label: "Community" },
+]
+
+export function DashboardHeader() {
+  const pathname = usePathname();
+
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+    <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+      <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+        <Link
+          href="/dashboard"
+          className="flex items-center gap-2 text-lg font-semibold md:text-base"
+        >
+          <Logo />
+          <span className="sr-only">Vanta AI</span>
+        </Link>
+        {navItems.map(item => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={cn(
+              "transition-colors hover:text-foreground",
+              (item.exact ? pathname === item.href : pathname.startsWith(item.href)) ? "text-foreground font-semibold" : "text-muted-foreground"
+            )}
+          >
+            {item.label}
+          </Link>
+        ))}
+      </nav>
       <Sheet>
         <SheetTrigger asChild>
-          <Button size="icon" variant="outline" className="sm:hidden">
-            <PanelLeft className="h-5 w-5" />
-            <span className="sr-only">Toggle Menu</span>
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left" className="sm:max-w-xs">
-          <SheetHeader>
-            <SheetTitle className="sr-only">Menu</SheetTitle>
-          </SheetHeader>
-          <nav className="grid gap-6 text-lg font-medium">
-            <Logo />
-            <Link
-              href="/dashboard"
-              className="flex items-center gap-4 px-2.5 text-foreground"
-            >
-              <LayoutDashboard className="h-5 w-5" />
-              Dashboard
-            </Link>
-            <Link
-              href="/dashboard/resume-builder"
-              className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-            >
-              <FileText className="h-5 w-5" />
-              Resume Builder
-            </Link>
-            <Link
-              href="/dashboard/cover-letter-builder"
-              className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-            >
-              <FileSignature className="h-5 w-5" />
-              Cover Letter Builder
-            </Link>
-            <Link
-              href="/dashboard/linkedin-optimizer"
-              className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-            >
-              <UserSquare className="h-5 w-5" />
-              LinkedIn Optimizer
-            </Link>
-            <Link
-              href="/dashboard/linkedin-outreach"
-              className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-            >
-              <Linkedin className="h-5 w-5" />
-              LinkedIn Outreach
-            </Link>
-            <Link
-              href="/dashboard/interview-prep"
-              className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-            >
-              <MessageSquareQuote className="h-5 w-5" />
-              Interview Prep
-            </Link>
-            <Link
-              href="/dashboard/career-plan"
-              className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-            >
-              <CalendarCheck className="h-5 w-5" />
-              Career Plan
-            </Link>
-            <Link
-              href="/dashboard/community"
-              className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-            >
-              <Trophy className="h-5 w-5" />
-              Community
-            </Link>
-            <Link
-              href="/dashboard/settings"
-              className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-            >
-              <Settings className="h-5 w-5" />
-              Settings
-            </Link>
-          </nav>
-        </SheetContent>
-      </Sheet>
-      <Breadcrumb className="hidden md:flex">
-        <BreadcrumbList>
-          {breadcrumb && (
-            <>
-              <BreadcrumbItem>
-                <BreadcrumbPage>{breadcrumb}</BreadcrumbPage>
-              </BreadcrumbItem>
-            </>
-          )}
-        </BreadcrumbList>
-      </Breadcrumb>
-      <div className="relative ml-auto flex-1 md:grow-0">
-        {/* Can be used for a search bar later */}
-      </div>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
           <Button
             variant="outline"
             size="icon"
-            className="overflow-hidden rounded-full"
+            className="shrink-0 md:hidden"
           >
-            <Avatar>
-              <AvatarImage src="https://placehold.co/32x32.png" alt="User Avatar" data-ai-hint="person avatar" />
-              <AvatarFallback>U</AvatarFallback>
-            </Avatar>
+            <PanelLeft className="h-5 w-5" />
+            <span className="sr-only">Toggle navigation menu</span>
           </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Settings</DropdownMenuItem>
-          <DropdownMenuItem>Support</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Logout</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+        </SheetTrigger>
+        <SheetContent side="left">
+          <nav className="grid gap-6 text-lg font-medium">
+            <Link
+              href="/dashboard"
+              className="flex items-center gap-2 text-lg font-semibold"
+            >
+              <Logo />
+              <span className="sr-only">Vanta AI</span>
+            </Link>
+            {navItems.map(item => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "hover:text-foreground",
+                   (item.exact ? pathname === item.href : pathname.startsWith(item.href)) ? "text-foreground font-semibold" : "text-muted-foreground"
+                )}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </SheetContent>
+      </Sheet>
+      <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+        <div className="ml-auto flex-1 sm:flex-initial">
+          {/* Search can go here if needed */}
+        </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="secondary" size="icon" className="rounded-full">
+              <Avatar>
+                <AvatarImage src="https://placehold.co/32x32.png" alt="User Avatar" data-ai-hint="person avatar" />
+                <AvatarFallback>U</AvatarFallback>
+              </Avatar>
+              <span className="sr-only">Toggle user menu</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/settings">Settings</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>Support</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
+                <Link href="/">Logout</Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
     </header>
   )
 }
