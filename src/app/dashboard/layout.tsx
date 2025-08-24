@@ -9,6 +9,7 @@ import {
   MessageSquareQuote,
   CalendarCheck,
   UserSquare,
+  Trophy,
 } from "lucide-react"
 import { usePathname } from 'next/navigation'
 
@@ -29,6 +30,7 @@ const navItems = [
   { href: "/dashboard/linkedin-outreach", icon: Linkedin, label: "LinkedIn Outreach" },
   { href: "/dashboard/interview-prep", icon: MessageSquareQuote, label: "Interview Prep" },
   { href: "/dashboard/career-plan", icon: CalendarCheck, label: "Career Plan" },
+  { href: "/dashboard/community", icon: Trophy, label: "Community" },
 ]
 
 export default function DashboardLayout({

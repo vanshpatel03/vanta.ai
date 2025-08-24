@@ -8,6 +8,7 @@ import {
   MessageSquareQuote,
   CalendarCheck,
   UserSquare,
+  Trophy,
 } from "lucide-react"
 
 import {
@@ -85,6 +86,13 @@ export function DashboardHeader({ breadcrumb }: { breadcrumb?: string }) {
             >
               <CalendarCheck className="h-5 w-5" />
               Career Plan
+            </Link>
+            <Link
+              href="/dashboard/community"
+              className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+            >
+              <Trophy className="h-5 w-5" />
+              Community
             </Link>
             <Link
               href="/dashboard/settings"
