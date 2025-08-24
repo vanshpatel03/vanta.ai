@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
 import { Copy, Download, FileText, Loader2, Save, Wand2 } from "lucide-react";
 import { generateResumeAction, ActionState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
@@ -10,25 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" disabled={pending} className="w-full sm:w-auto">
-      {pending ? (
-        <>
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Generating...
-        </>
-      ) : (
-        <>
-          <Wand2 className="mr-2 h-4 w-4" />
-          Generate Tailored Resume
-        </>
-      )}
-    </Button>
-  );
-}
+import { SubmitButton } from "@/components/submit-button";
 
 export default function ResumeBuilderPage() {
   const { toast } = useToast();
@@ -96,7 +77,7 @@ export default function ResumeBuilderPage() {
             </div>
           </CardContent>
           <CardFooter className="flex justify-end">
-            <SubmitButton />
+            <SubmitButton buttonText="Generate Tailored Resume" />
           </CardFooter>
         </form>
       </Card>
@@ -107,7 +88,7 @@ export default function ResumeBuilderPage() {
           <CardDescription>
             Your AI-generated resume will appear here. It has been tailored for the job you are applying for.
           </CardDescription>
-        </Header>
+        </CardHeader>
         <CardContent>
           <Textarea
             placeholder="Your resume..."

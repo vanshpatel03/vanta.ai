@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
-import { Lightbulb, Loader2, MessageSquareQuote, Wand2 } from "lucide-react";
+import { Lightbulb, MessageSquareQuote } from "lucide-react";
 import { generateInterviewQuestionsAction, ActionState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,29 +11,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { SubmitButton } from "@/components/submit-button";
 
 interface Question {
   question: string;
   suggestion: string;
-}
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" disabled={pending} className="w-full sm:w-auto">
-      {pending ? (
-        <>
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Generating...
-        </>
-      ) : (
-        <>
-          <Wand2 className="mr-2 h-4 w-4" />
-          Generate Questions
-        </>
-      )}
-    </Button>
-  );
 }
 
 export default function InterviewPrepPage() {
@@ -98,7 +79,7 @@ export default function InterviewPrepPage() {
               </div>
           </CardContent>
           <CardFooter className="flex justify-end">
-            <SubmitButton />
+            <SubmitButton buttonText="Generate Questions" />
           </CardFooter>
         </form>
       </Card>
@@ -109,7 +90,7 @@ export default function InterviewPrepPage() {
           <CardDescription>
             Here are some questions you might be asked. Use the personalized suggestions to prepare your answers.
           </CardDescription>
-        </Header>
+        </CardHeader>
         <CardContent>
           {generatedQuestions.length > 0 ? (
             <Accordion type="single" collapsible className="w-full">

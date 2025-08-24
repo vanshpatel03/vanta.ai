@@ -2,33 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
-import { Copy, Download, FileSignature, Loader2, Save, Wand2 } from "lucide-react";
+import { Copy, Download, FileSignature, Save } from "lucide-react";
 import { generateCoverLetterAction, ActionState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" disabled={pending} className="w-full sm:w-auto">
-      {pending ? (
-        <>
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Generating...
-        </>
-      ) : (
-        <>
-          <Wand2 className="mr-2 h-4 w-4" />
-          Generate Cover Letter
-        </>
-      )}
-    </Button>
-  );
-}
+import { SubmitButton } from "@/components/submit-button";
 
 export default function CoverLetterBuilderPage() {
   const { toast } = useToast();
@@ -96,7 +77,7 @@ export default function CoverLetterBuilderPage() {
               </div>
           </CardContent>
           <CardFooter className="flex justify-end">
-            <SubmitButton />
+            <SubmitButton buttonText="Generate Cover Letter" />
           </CardFooter>
         </form>
       </Card>

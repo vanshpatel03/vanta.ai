@@ -2,38 +2,19 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
-import { CalendarCheck, Loader2, Wand2, CheckCircle, Rocket } from "lucide-react";
+import { CalendarCheck, Rocket } from "lucide-react";
 import { generateCareerPlanAction, ActionState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { SubmitButton } from "@/components/submit-button";
 
 interface DailyPlan {
   day: number;
   task: string;
   details: string;
-}
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" disabled={pending} className="w-full sm:w-auto">
-      {pending ? (
-        <>
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Generating Plan...
-        </>
-      ) : (
-        <>
-          <Wand2 className="mr-2 h-4 w-4" />
-          Generate Career Plan
-        </>
-      )}
-    </Button>
-  );
 }
 
 export default function CareerPlanPage() {
@@ -95,7 +76,7 @@ export default function CareerPlanPage() {
               </div>
           </CardContent>
           <CardFooter className="flex justify-end">
-            <SubmitButton />
+            <SubmitButton buttonText="Generate Career Plan" />
           </CardFooter>
         </form>
       </Card>

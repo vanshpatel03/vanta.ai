@@ -2,33 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
-import { Copy, Linkedin, Loader2, Save, Wand2 } from "lucide-react";
+import { Copy, Linkedin, Save } from "lucide-react";
 import { generateLinkedInOutreachAction, ActionState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" disabled={pending} className="w-full">
-      {pending ? (
-        <>
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Generating...
-        </>
-      ) : (
-        <>
-          <Wand2 className="mr-2 h-4 w-4" />
-          Generate Message
-        </>
-      )}
-    </Button>
-  );
-}
+import { SubmitButton } from "@/components/submit-button";
 
 export default function LinkedInOutreachPage() {
   const { toast } = useToast();
@@ -87,7 +68,7 @@ export default function LinkedInOutreachPage() {
             </div>
           </CardContent>
           <CardFooter>
-            <SubmitButton />
+            <SubmitButton buttonText="Generate Message" className="w-full" />
           </CardFooter>
         </form>
       </Card>

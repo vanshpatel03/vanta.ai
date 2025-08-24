@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
-import { Copy, Loader2, UserSquare, Wand2 } from "lucide-react";
+import { Copy, UserSquare } from "lucide-react";
 import { generateLinkedInProfileAction, ActionState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,29 +10,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { SubmitButton } from "@/components/submit-button";
 
 interface ProfileOutput {
   headline: string;
   bio: string;
-}
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" disabled={pending} className="w-full sm:w-auto">
-      {pending ? (
-        <>
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Optimizing...
-        </>
-      ) : (
-        <>
-          <Wand2 className="mr-2 h-4 w-4" />
-          Optimize Profile
-        </>
-      )}
-    </Button>
-  );
 }
 
 export default function LinkedInOptimizerPage() {
@@ -109,7 +90,7 @@ export default function LinkedInOptimizerPage() {
               </div>
           </CardContent>
           <CardFooter className="flex justify-end">
-            <SubmitButton />
+            <SubmitButton buttonText="Optimize Profile" />
           </CardFooter>
         </form>
       </Card>
