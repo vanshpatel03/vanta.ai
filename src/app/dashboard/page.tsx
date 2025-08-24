@@ -7,7 +7,8 @@ import {
   CalendarCheck,
   UserSquare,
   Trophy,
-  ArrowRight
+  ArrowRight,
+  Sparkles
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -48,6 +49,12 @@ const featureCards = [
     icon: CalendarCheck,
     title: 'Career Plan',
     description: 'Get a 30-day roadmap to your dream job.',
+  },
+  {
+    href: '/dashboard/ai-mentor',
+    icon: Sparkles,
+    title: '1-on-1 AI Mentor',
+    description: 'Get personalized career advice from our AI.',
   },
    {
     href: '/dashboard/community',

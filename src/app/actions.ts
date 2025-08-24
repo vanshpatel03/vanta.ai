@@ -6,6 +6,8 @@ import { generateLinkedInOutreachMessage } from '@/ai/flows/generate-linkedin-ou
 import { generateInterviewQuestions } from '@/ai/flows/generate-interview-questions';
 import { generateCareerPlan } from '@/ai/flows/generate-career-plan';
 import { generateLinkedInProfile } from '@/ai/flows/generate-linkedin-profile';
+import { generateMentorChatResponse } from '@/ai/flows/generate-mentor-chat-response';
+
 
 export interface ActionState {
   message: string;
@@ -139,5 +141,26 @@ export async function generateLinkedInProfileAction(
   } catch (error) {
     console.error(error);
     return { message: "An error occurred while generating your LinkedIn profile." };
+  }
+}
+
+export async function generateMentorChatAction(
+  prevState: ActionState,
+  formData: FormData
+): Promise<ActionState> {
+  const userMessage = formData.get('userMessage') as string;
+  const chatHistory = formData.get('chatHistory') as string;
+
+  if (!userMessage) {
+    return { message: "Please enter a message." };
+  }
+
+  try {
+    const parsedHistory = chatHistory ? JSON.parse(chatHistory) : [];
+    const result = await generateMentorChatResponse({ userMessage, chatHistory: parsedHistory });
+    return { message: "success", output: result.response };
+  } catch (error) {
+    console.error(error);
+    return { message: "An error occurred while getting a response from the AI mentor." };
   }
 }

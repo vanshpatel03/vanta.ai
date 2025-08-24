@@ -36,10 +36,10 @@ export default function SignupPage() {
             <Input id="password" type="password" required />
           </div>
           <Button type="submit" className="w-full" asChild>
-            <Link href="/dashboard">Create an account</Link>
+            <Link href="/dashboard/pricing">Create an account</Link>
           </Button>
           <Button variant="outline" className="w-full" asChild>
-            <Link href="/dashboard">
+            <Link href="/dashboard/pricing">
               <GoogleIcon className="mr-2 h-4 w-4" />
               Sign up with Google
             </Link>

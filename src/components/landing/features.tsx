@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { FileText, FileSignature, Linkedin, MessageSquareQuote, CalendarCheck, UserSquare } from "lucide-react";
+import { FileText, FileSignature, Linkedin, MessageSquareQuote, CalendarCheck, UserSquare, Sparkles } from "lucide-react";
 
 const features = [
   {
@@ -31,6 +31,11 @@ const features = [
     icon: <CalendarCheck className="w-10 h-10 text-primary" />,
     title: "30-Day Career Plan",
     description: "Receive a personalized, day-by-day roadmap to help you achieve your career goals.",
+  },
+  {
+    icon: <Sparkles className="w-10 h-10 text-primary" />,
+    title: "1-on-1 AI Mentor (Pro)",
+    description: "Get personalized career advice and guidance from our most advanced AI.",
   }
 ];
 

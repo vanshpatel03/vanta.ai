@@ -13,6 +13,7 @@ import {
   UserSquare,
   Trophy,
   LayoutDashboard,
+  Sparkles,
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -37,6 +38,7 @@ const navItems = [
   { href: "/dashboard/linkedin-outreach", icon: Linkedin, label: "LinkedIn Outreach" },
   { href: "/dashboard/interview-prep", icon: MessageSquareQuote, label: "Interview Prep" },
   { href: "/dashboard/career-plan", icon: CalendarCheck, label: "Career Plan" },
+  { href: "/dashboard/ai-mentor", icon: Sparkles, label: "AI Mentor" },
   { href: "/dashboard/community", icon: Trophy, label: "Community" },
 ]
 
@@ -78,8 +80,8 @@ export function DashboardHeader() {
           </Button>
         </SheetTrigger>
         <SheetContent side="left">
-          <SheetHeader>
-            <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+          <SheetHeader className="sr-only">
+            <SheetTitle>Navigation Menu</SheetTitle>
           </SheetHeader>
           <nav className="grid gap-6 text-lg font-medium">
             <Link

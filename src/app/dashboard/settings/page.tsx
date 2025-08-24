@@ -6,16 +6,24 @@ import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 
 export default function SettingsPage() {
+  // This would be dynamic based on the user's subscription
+  const plan = "Free"; // "Free", "Premium", "Pro", "Pro Annual"
+  
   const usage = {
-    resumes: 2,
-    coverLetters: 3,
-    outreachMessages: 7,
+    resumes: 1,
+    coverLetters: 0,
+    outreachMessages: 2,
   };
+  
   const limits = {
-    resumes: 5,
-    coverLetters: 5,
-    outreachMessages: 10,
+    Free: { resumes: 1, coverLetters: 1, outreachMessages: 3 },
+    Premium: { resumes: Infinity, coverLetters: Infinity, outreachMessages: Infinity },
+    Pro: { resumes: Infinity, coverLetters: Infinity, outreachMessages: Infinity },
+    "Pro Annual": { resumes: Infinity, coverLetters: Infinity, outreachMessages: Infinity },
   };
+
+  const currentLimits = limits[plan as keyof typeof limits] || limits.Free;
+  const isFreePlan = plan === 'Free';
 
   return (
     <div className="grid gap-6">
@@ -70,40 +78,45 @@ export default function SettingsPage() {
           <div className="space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border rounded-lg">
               <div>
-                <h3 className="text-lg font-semibold">Free Plan</h3>
-                <p className="text-sm text-muted-foreground">You are currently on the Free plan.</p>
+                <h3 className="text-lg font-semibold">{plan} Plan</h3>
+                <p className="text-sm text-muted-foreground">
+                  {plan === 'Free' ? 'You are currently on the Free plan.' : `Your plan renews on ${new Date(new Date().setMonth(new Date().getMonth() + 1)).toLocaleDateString()}.`}
+                </p>
               </div>
               <Button className="mt-2 sm:mt-0">Upgrade to Pro</Button>
             </div>
             
-            <Separator />
-            
-            <div>
-              <h4 className="text-md font-semibold mb-4">Current Usage</h4>
-              <div className="space-y-4">
-                <div className="space-y-1">
-                  <div className="flex justify-between text-sm">
-                    <span>AI Resume Builds</span>
-                    <span>{usage.resumes} of {limits.resumes} used</span>
+            {isFreePlan && (
+              <>
+                <Separator />
+                <div>
+                  <h4 className="text-md font-semibold mb-4">Current Usage</h4>
+                  <div className="space-y-4">
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-sm">
+                        <span>AI Resume Builds</span>
+                        <span>{usage.resumes} of {currentLimits.resumes} used</span>
+                      </div>
+                      <Progress value={(usage.resumes / currentLimits.resumes) * 100} />
+                    </div>
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-sm">
+                        <span>AI Cover Letters</span>
+                        <span>{usage.coverLetters} of {currentLimits.coverLetters} used</span>
+                      </div>
+                      <Progress value={(usage.coverLetters / currentLimits.coverLetters) * 100} />
+                    </div>
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-sm">
+                        <span>LinkedIn Outreach</span>
+                        <span>{usage.outreachMessages} of {currentLimits.outreachMessages} used</span>
+                      </div>
+                      <Progress value={(usage.outreachMessages / currentLimits.outreachMessages) * 100} />
+                    </div>
                   </div>
-                  <Progress value={(usage.resumes / limits.resumes) * 100} />
                 </div>
-                <div className="space-y-1">
-                  <div className="flex justify-between text-sm">
-                    <span>AI Cover Letters</span>
-                    <span>{usage.coverLetters} of {limits.coverLetters} used</span>
-                  </div>
-                  <Progress value={(usage.coverLetters / limits.coverLetters) * 100} />
-                </div>
-                 <div className="space-y-1">
-                  <div className="flex justify-between text-sm">
-                    <span>LinkedIn Outreach</span>
-                    <span>{usage.outreachMessages} of {limits.outreachMessages} used</span>
-                  </div>
-                  <Progress value={(usage.outreachMessages / limits.outreachMessages) * 100} />
-                </div>
-              </div>
-            </div>
+              </>
+            )}
           </div>
         </CardContent>
       </Card>
