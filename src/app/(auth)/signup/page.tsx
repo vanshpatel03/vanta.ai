@@ -33,7 +33,7 @@ export default function SignupPage() {
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" />
+            <Input id="password" type="password" required />
           </div>
           <Button type="submit" className="w-full" asChild>
             <Link href="/dashboard">Create an account</Link>
