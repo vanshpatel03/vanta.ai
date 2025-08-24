@@ -65,10 +65,10 @@ export default function LinkedInOutreachPage() {
           <CardHeader>
             <CardTitle className="font-headline flex items-center gap-2">
               <Linkedin />
-              LinkedIn Outreach Assistant
+              AI LinkedIn Chat Assistant
             </CardTitle>
             <CardDescription>
-              Enter the details below to generate a personalized outreach message.
+              Enter the details below and our AI will rewrite your DM to recruiters.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
