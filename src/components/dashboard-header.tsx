@@ -6,6 +6,7 @@ import {
   Settings,
   FileSignature,
   MessageSquareQuote,
+  CalendarCheck,
 } from "lucide-react"
 
 import {
@@ -69,6 +70,13 @@ export function DashboardHeader({ breadcrumb }: { breadcrumb?: string }) {
             >
               <MessageSquareQuote className="h-5 w-5" />
               Interview Prep
+            </Link>
+            <Link
+              href="/dashboard/career-plan"
+              className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+            >
+              <CalendarCheck className="h-5 w-5" />
+              Career Plan
             </Link>
             <Link
               href="/dashboard/settings"

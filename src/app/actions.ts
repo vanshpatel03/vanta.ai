@@ -4,6 +4,7 @@ import { generateResume } from '@/ai/flows/generate-resume';
 import { generateCoverLetter } from '@/ai/flows/generate-cover-letter';
 import { generateLinkedInOutreachMessage } from '@/ai/flows/generate-linkedin-outreach-message';
 import { generateInterviewQuestions } from '@/ai/flows/generate-interview-questions';
+import { generateCareerPlan } from '@/ai/flows/generate-career-plan';
 
 export interface ActionState {
   message: string;
@@ -86,5 +87,25 @@ export async function generateInterviewQuestionsAction(
   } catch (error) {
     console.error(error);
     return { message: "An error occurred while generating interview questions." };
+  }
+}
+
+export async function generateCareerPlanAction(
+  prevState: ActionState,
+  formData: FormData
+): Promise<ActionState> {
+  const currentRole = formData.get('currentRole') as string;
+  const careerGoal = formData.get('careerGoal') as string;
+
+  if (!currentRole || !careerGoal) {
+    return { message: "Please fill in all fields." };
+  }
+  
+  try {
+    const result = await generateCareerPlan({ currentRole, careerGoal });
+    return { message: "success", output: result.plan };
+  } catch (error) {
+    console.error(error);
+    return { message: "An error occurred while generating the career plan." };
   }
 }
