@@ -10,10 +10,10 @@ const tiers = [
     period: "/ month",
     description: "Get started with the essentials to boost your job search.",
     features: [
-      "5 AI Resume builds",
-      "5 AI Cover Letters",
-      "10 LinkedIn outreach messages",
-      "Access to all AI tools",
+      "1 AI Resume build",
+      "1 AI Cover Letter",
+      "3 LinkedIn outreach messages",
+      "Access to all AI tools (basic)",
     ],
     cta: "Start for Free",
     href: "/signup",
@@ -28,6 +28,7 @@ const tiers = [
       "Unlimited AI Cover Letters",
       "Unlimited outreach messages",
       "Priority career plans",
+      "Advanced AI models",
     ],
     cta: "Go Premium",
     href: "/signup",
@@ -35,16 +36,30 @@ const tiers = [
   },
    {
     name: "Pro",
-    price: "$29.99",
+    price: "$19.99",
     period: "/ month",
-    description: "For professionals who want personalized guidance.",
+    description: "For professionals who want personalized guidance and advanced tools.",
     features: [
       "All Premium features",
-      "1-on-1 mentor AI",
-      "Priority job matches",
-      "Dedicated support",
+      "1-on-1 AI mentor",
+      "Priority job matching",
+      "Dedicated email support",
     ],
     cta: "Go Pro",
+    href: "/signup",
+  },
+  {
+    name: "Pro Annual",
+    price: "$49.99",
+    period: "/ year",
+    description: "Get the ultimate career advantage with a one-time annual payment.",
+    features: [
+      "All Pro features",
+      "Save over 75% with annual billing",
+      "Early access to new features",
+      "Top-tier priority support",
+    ],
+    cta: "Go Pro Annual",
     href: "/signup",
   },
 ];
@@ -59,7 +74,7 @@ export function Pricing() {
             Choose the plan that best fits your job search needs and career goals.
           </p>
         </div>
-        <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-stretch">
           {tiers.map((tier) => (
             <Card key={tier.name} className={`flex flex-col shadow-lg ${tier.popular ? 'border-primary ring-2 ring-primary' : ''}`}>
               <CardHeader>
@@ -68,7 +83,7 @@ export function Pricing() {
                   <span className="text-4xl font-bold">{tier.price}</span>
                   <span className="text-muted-foreground">{tier.period}</span>
                 </div>
-                <CardDescription>{tier.description}</CardDescription>
+                <CardDescription className="min-h-[40px]">{tier.description}</CardDescription>
               </CardHeader>
               <CardContent className="flex-1">
                 <ul className="space-y-3">
