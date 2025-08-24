@@ -37,12 +37,14 @@ export default function LoginPage() {
             </div>
             <Input id="password" type="password" required />
           </div>
-          <Button type="submit" className="w-full">
-            Sign In
+          <Button type="submit" className="w-full" asChild>
+            <Link href="/dashboard">Sign In</Link>
           </Button>
-          <Button variant="outline" className="w-full">
-            <GoogleIcon className="mr-2 h-4 w-4" />
-            Sign in with Google
+          <Button variant="outline" className="w-full" asChild>
+             <Link href="/dashboard">
+                <GoogleIcon className="mr-2 h-4 w-4" />
+                Sign in with Google
+             </Link>
           </Button>
         </div>
         <div className="mt-4 text-center text-sm">

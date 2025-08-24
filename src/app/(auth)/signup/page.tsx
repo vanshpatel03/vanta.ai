@@ -35,12 +35,14 @@ export default function SignupPage() {
             <Label htmlFor="password">Password</Label>
             <Input id="password" type="password" />
           </div>
-          <Button type="submit" className="w-full">
-            Create an account
+          <Button type="submit" className="w-full" asChild>
+            <Link href="/dashboard">Create an account</Link>
           </Button>
-          <Button variant="outline" className="w-full">
-            <GoogleIcon className="mr-2 h-4 w-4" />
-            Sign up with Google
+          <Button variant="outline" className="w-full" asChild>
+            <Link href="/dashboard">
+              <GoogleIcon className="mr-2 h-4 w-4" />
+              Sign up with Google
+            </Link>
           </Button>
         </div>
         <div className="mt-4 text-center text-sm">
