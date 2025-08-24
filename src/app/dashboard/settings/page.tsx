@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
@@ -7,14 +7,14 @@ import { Separator } from "@/components/ui/separator";
 
 export default function SettingsPage() {
   const usage = {
-    resumes: 1,
-    coverLetters: 1,
-    outreachMessages: 3,
+    resumes: 2,
+    coverLetters: 3,
+    outreachMessages: 7,
   };
   const limits = {
-    resumes: 2,
-    coverLetters: 2,
-    outreachMessages: 5,
+    resumes: 5,
+    coverLetters: 5,
+    outreachMessages: 10,
   };
 
   return (

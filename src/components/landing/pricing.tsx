@@ -10,27 +10,42 @@ const tiers = [
     period: "/ month",
     description: "Get started with the essentials to boost your job search.",
     features: [
-      "2 AI Resume builds",
-      "2 AI Cover Letters",
-      "5 LinkedIn outreach messages",
+      "5 AI Resume builds",
+      "5 AI Cover Letters",
+      "10 LinkedIn outreach messages",
+      "Access to all AI tools",
     ],
     cta: "Start for Free",
     href: "/signup",
   },
   {
-    name: "Pro",
-    price: "$15",
+    name: "Premium",
+    price: "$9.99",
     period: "/ month",
-    description: "Unlock unlimited potential and advanced features.",
+    description: "For the dedicated job seeker. Unlimited access and priority features.",
     features: [
       "Unlimited AI Resume builds",
       "Unlimited AI Cover Letters",
       "Unlimited outreach messages",
-      "AI-powered Auto-Apply tool (Coming Soon)",
+      "Priority career plans",
+    ],
+    cta: "Go Premium",
+    href: "/signup",
+    popular: true,
+  },
+   {
+    name: "Pro",
+    price: "$29.99",
+    period: "/ month",
+    description: "For professionals who want personalized guidance.",
+    features: [
+      "All Premium features",
+      "1-on-1 mentor AI",
+      "Priority job matches",
+      "Dedicated support",
     ],
     cta: "Go Pro",
     href: "/signup",
-    popular: true,
   },
 ];
 
@@ -44,7 +59,7 @@ export function Pricing() {
             Choose the plan that best fits your job search needs and career goals.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {tiers.map((tier) => (
             <Card key={tier.name} className={`flex flex-col shadow-lg ${tier.popular ? 'border-primary ring-2 ring-primary' : ''}`}>
               <CardHeader>
