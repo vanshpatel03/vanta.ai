@@ -72,7 +72,7 @@ export default function InterviewPrepPage() {
                 AI Interview Prep
             </CardTitle>
             <CardDescription>
-              Paste a job description to generate tailored interview questions and practice your answers.
+              Paste a job description and your resume to get tailored questions and personalized advice.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -82,7 +82,17 @@ export default function InterviewPrepPage() {
                   id="jobDescription"
                   name="jobDescription"
                   placeholder="Paste the job description here..."
-                  className="min-h-[300px]"
+                  className="min-h-[200px]"
+                  required
+                />
+              </div>
+              <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="resumeText">Your Resume</Label>
+                <Textarea
+                  id="resumeText"
+                  name="resumeText"
+                  placeholder="Paste your resume text here for personalized suggestions..."
+                  className="min-h-[200px]"
                   required
                 />
               </div>
@@ -97,9 +107,9 @@ export default function InterviewPrepPage() {
         <CardHeader>
           <CardTitle className="font-headline">Generated Questions</CardTitle>
           <CardDescription>
-            Here are some questions you might be asked. Use the suggestions to prepare your answers.
+            Here are some questions you might be asked. Use the personalized suggestions to prepare your answers.
           </CardDescription>
-        </CardHeader>
+        </Header>
         <CardContent>
           {generatedQuestions.length > 0 ? (
             <Accordion type="single" collapsible className="w-full">
@@ -109,7 +119,7 @@ export default function InterviewPrepPage() {
                   <AccordionContent>
                     <Alert>
                       <Lightbulb className="h-4 w-4" />
-                      <AlertTitle>Suggestion</AlertTitle>
+                      <AlertTitle>Personalized Suggestion</AlertTitle>
                       <AlertDescription>
                         {q.suggestion}
                       </AlertDescription>

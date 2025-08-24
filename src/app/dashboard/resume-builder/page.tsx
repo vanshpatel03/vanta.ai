@@ -23,7 +23,7 @@ function SubmitButton() {
       ) : (
         <>
           <Wand2 className="mr-2 h-4 w-4" />
-          Generate Resume
+          Generate Tailored Resume
         </>
       )}
     </Button>
@@ -43,7 +43,7 @@ export default function ResumeBuilderPage() {
       setGeneratedResume(state.output);
       toast({
         title: "Success!",
-        description: "Your new resume has been generated.",
+        description: "Your new tailored resume has been generated.",
       });
       formRef.current?.reset();
     } else if (state.message && state.message !== "success") {
@@ -70,21 +70,29 @@ export default function ResumeBuilderPage() {
               AI Resume Builder
             </CardTitle>
             <CardDescription>
-              Paste your work experience or a link to your LinkedIn profile. Our AI will craft a professional resume for you.
+              Paste your experience and a job description. Our AI will craft a resume tailored specifically for that role.
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="workExperience">Work Experience / LinkedIn URL</Label>
-                <Textarea
-                  id="workExperience"
-                  name="workExperience"
-                  placeholder="Paste your experience here..."
-                  className="min-h-[300px]"
-                  required
-                />
-              </div>
+          <CardContent className="space-y-4">
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="workExperience">Your Work Experience</Label>
+              <Textarea
+                id="workExperience"
+                name="workExperience"
+                placeholder="Paste your experience or LinkedIn profile text here..."
+                className="min-h-[200px]"
+                required
+              />
+            </div>
+             <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="jobDescription">Target Job Description</Label>
+              <Textarea
+                id="jobDescription"
+                name="jobDescription"
+                placeholder="Paste the job description here to tailor your resume..."
+                className="min-h-[200px]"
+                required
+              />
             </div>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -97,9 +105,9 @@ export default function ResumeBuilderPage() {
         <CardHeader>
           <CardTitle className="font-headline">Generated Resume</CardTitle>
           <CardDescription>
-            Your AI-generated resume will appear here. You can edit it before saving or exporting.
+            Your AI-generated resume will appear here. It has been tailored for the job you are applying for.
           </CardDescription>
-        </CardHeader>
+        </Header>
         <CardContent>
           <Textarea
             placeholder="Your resume..."

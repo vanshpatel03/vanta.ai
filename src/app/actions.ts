@@ -17,11 +17,17 @@ export async function generateResumeAction(
   formData: FormData
 ): Promise<ActionState> {
   const workExperience = formData.get('workExperience') as string;
+  const jobDescription = formData.get('jobDescription') as string;
+
   if (!workExperience || workExperience.length < 50) {
     return { message: "Please provide more detailed work experience (at least 50 characters)." };
   }
+  if (!jobDescription || jobDescription.length < 50) {
+    return { message: "Please provide a job description to tailor the resume to (at least 50 characters)." };
+  }
+
   try {
-    const result = await generateResume({ workExperience });
+    const result = await generateResume({ workExperience, jobDescription });
     return { message: "success", output: result.resume };
   } catch (error) {
     console.error(error);
@@ -79,11 +85,15 @@ export async function generateInterviewQuestionsAction(
   formData: FormData
 ): Promise<ActionState> {
   const jobDescription = formData.get('jobDescription') as string;
+  const resumeText = formData.get('resumeText') as string;
   if (!jobDescription || jobDescription.length < 50) {
     return { message: "Please provide a more detailed job description (at least 50 characters)." };
   }
+  if (!resumeText || resumeText.length < 50) {
+    return { message: "Please provide your resume text to generate personalized suggestions (at least 50 characters)." };
+  }
   try {
-    const result = await generateInterviewQuestions({ jobDescription });
+    const result = await generateInterviewQuestions({ jobDescription, resumeText });
     return { message: "success", output: result.questions };
   } catch (error) {
     console.error(error);
