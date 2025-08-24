@@ -7,8 +7,10 @@ import {
   CalendarCheck,
   UserSquare,
   Trophy,
+  ArrowRight
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 const featureCards = [
   {
@@ -56,22 +58,39 @@ const featureCards = [
 ];
 
 export default function DashboardPage() {
+  const userName = "Alex"; // This would be dynamic in a real app
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-8">
+       <div className="flex flex-col gap-2">
+        <h1 className="text-3xl font-bold font-headline tracking-tight">Welcome back, {userName}!</h1>
+        <p className="text-muted-foreground">Here are your tools to land your dream job. Let's get started.</p>
+      </div>
+
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {featureCards.map((card) => (
-          <Card key={card.href} className="hover:border-primary/80 hover:shadow-md transition-all">
+          <Card key={card.href} className="hover:border-primary/80 hover:shadow-lg transition-all flex flex-col group">
             <Link href={card.href} className="flex flex-col h-full">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">{card.title}</CardTitle>
-                <card.icon className="h-4 w-4 text-muted-foreground" />
+                <CardTitle className="text-base font-medium">{card.title}</CardTitle>
+                <card.icon className="h-5 w-5 text-muted-foreground" />
               </CardHeader>
               <CardContent className="flex-1">
-                <p className="text-xs text-muted-foreground">{card.description}</p>
+                <p className="text-sm text-muted-foreground">{card.description}</p>
               </CardContent>
+              <div className="p-6 pt-0">
+                  <div className="flex items-center text-sm font-medium text-primary group-hover:gap-2 transition-all">
+                    Get Started <ArrowRight className="h-4 w-4" />
+                  </div>
+              </div>
             </Link>
           </Card>
         ))}
+         <Card className="md:col-span-2 lg:col-span-1 xl:col-span-1 bg-primary/10 border-primary/30 flex flex-col items-center justify-center text-center p-6">
+            <h3 className="text-lg font-semibold mb-2">Explore More Tools</h3>
+            <p className="text-sm text-muted-foreground mb-4">Have an idea for a new feature? Let us know!</p>
+            <Button variant="outline">Request a Feature</Button>
+        </Card>
       </div>
     </div>
   );
