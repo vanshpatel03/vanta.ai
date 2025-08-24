@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useActionState } from "react";
-import { Copy, Download, FileText, Loader2, Save, Wand2 } from "lucide-react";
+import { Copy, Download, FileText, Save } from "lucide-react";
 import { generateResumeAction, ActionState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
