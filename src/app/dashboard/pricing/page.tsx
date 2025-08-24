@@ -31,7 +31,7 @@ const tiers = [
       "Advanced AI models",
     ],
     cta: "Upgrade to Premium",
-    href: "#", // Replace with Lemon Squeezy link
+    href: "https://vanta.lemonsqueezy.com/checkout/buy/premium-plan", // Placeholder
     popular: true,
   },
    {
@@ -46,7 +46,7 @@ const tiers = [
       "Dedicated email support",
     ],
     cta: "Upgrade to Pro",
-    href: "#", // Replace with Lemon Squeezy link
+    href: "https://vanta.lemonsqueezy.com/checkout/buy/pro-plan", // Placeholder
   },
   {
     name: "Pro Annual",
@@ -60,7 +60,7 @@ const tiers = [
       "Top-tier priority support",
     ],
     cta: "Go Pro Annual",
-    href: "#", // Replace with Lemon Squeezy link
+    href: "https://vanta.lemonsqueezy.com/checkout/buy/pro-annual-plan", // Placeholder
   },
 ];
 

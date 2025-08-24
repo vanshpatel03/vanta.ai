@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
-import { Check } from "lucide-react";
+import { Check, Star } from "lucide-react";
 
 const tiers = [
   {
@@ -31,7 +31,7 @@ const tiers = [
       "Advanced AI models",
     ],
     cta: "Go Premium",
-    href: "/signup",
+    href: "https://vanta.lemonsqueezy.com/checkout/buy/premium-plan", // Placeholder
     popular: true,
   },
    {
@@ -46,7 +46,7 @@ const tiers = [
       "Dedicated email support",
     ],
     cta: "Go Pro",
-    href: "/signup",
+    href: "https://vanta.lemonsqueezy.com/checkout/buy/pro-plan", // Placeholder
   },
   {
     name: "Pro Annual",
@@ -60,7 +60,7 @@ const tiers = [
       "Top-tier priority support",
     ],
     cta: "Go Pro Annual",
-    href: "/signup",
+    href: "https://vanta.lemonsqueezy.com/checkout/buy/pro-annual-plan", // Placeholder
   },
 ];
 
@@ -77,6 +77,14 @@ export function Pricing() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-stretch">
           {tiers.map((tier) => (
             <Card key={tier.name} className={`flex flex-col shadow-lg ${tier.popular ? 'border-primary ring-2 ring-primary' : ''}`}>
+              {tier.popular && (
+              <div className="absolute top-0 right-4 -mt-3">
+                <div className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground text-xs font-semibold px-3 py-1 rounded-full">
+                    <Star className="h-4 w-4" />
+                    Most Popular
+                </div>
+              </div>
+            )}
               <CardHeader>
                 <CardTitle className="font-headline">{tier.name}</CardTitle>
                 <div className="flex items-baseline">
