@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { Copy, Loader2, UserSquare, Wand2 } from "lucide-react";
 import { generateLinkedInProfileAction, ActionState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
@@ -38,7 +39,7 @@ function SubmitButton() {
 export default function LinkedInOptimizerPage() {
   const { toast } = useToast();
   const initialState: ActionState = { message: "", output: { headline: "", bio: "" } };
-  const [state, formAction] = useFormState(generateLinkedInProfileAction, initialState);
+  const [state, formAction] = useActionState(generateLinkedInProfileAction, initialState);
   const [generatedProfile, setGeneratedProfile] = useState<ProfileOutput>({ headline: "", bio: "" });
   
   const formRef = useRef<HTMLFormElement>(null);

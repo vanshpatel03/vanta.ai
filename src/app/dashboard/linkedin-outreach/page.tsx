@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { Copy, Linkedin, Loader2, Save, Wand2 } from "lucide-react";
 import { generateLinkedInOutreachAction, ActionState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
@@ -32,7 +33,7 @@ function SubmitButton() {
 export default function LinkedInOutreachPage() {
   const { toast } = useToast();
   const initialState: ActionState = { message: "", output: "" };
-  const [state, formAction] = useFormState(generateLinkedInOutreachAction, initialState);
+  const [state, formAction] = useActionState(generateLinkedInOutreachAction, initialState);
   const [generatedMessage, setGeneratedMessage] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 

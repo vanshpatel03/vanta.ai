@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { CalendarCheck, Loader2, Wand2, CheckCircle, Rocket } from "lucide-react";
 import { generateCareerPlanAction, ActionState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
@@ -38,7 +39,7 @@ function SubmitButton() {
 export default function CareerPlanPage() {
   const { toast } = useToast();
   const initialState: ActionState = { message: "", output: [] };
-  const [state, formAction] = useFormState(generateCareerPlanAction, initialState);
+  const [state, formAction] = useActionState(generateCareerPlanAction, initialState);
   const [generatedPlan, setGeneratedPlan] = useState<DailyPlan[]>([]);
   
   const formRef = useRef<HTMLFormElement>(null);

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { Copy, Download, FileSignature, Loader2, Save, Wand2 } from "lucide-react";
 import { generateCoverLetterAction, ActionState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
@@ -32,7 +33,7 @@ function SubmitButton() {
 export default function CoverLetterBuilderPage() {
   const { toast } = useToast();
   const initialState: ActionState = { message: "", output: "" };
-  const [state, formAction] = useFormState(generateCoverLetterAction, initialState);
+  const [state, formAction] = useActionState(generateCoverLetterAction, initialState);
   const [generatedCoverLetter, setGeneratedCoverLetter] = useState("");
   
   const formRef = useRef<HTMLFormElement>(null);

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { Lightbulb, Loader2, MessageSquareQuote, Wand2 } from "lucide-react";
 import { generateInterviewQuestionsAction, ActionState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
@@ -39,7 +40,7 @@ function SubmitButton() {
 export default function InterviewPrepPage() {
   const { toast } = useToast();
   const initialState: ActionState = { message: "", output: [] };
-  const [state, formAction] = useFormState(generateInterviewQuestionsAction, initialState);
+  const [state, formAction] = useActionState(generateInterviewQuestionsAction, initialState);
   const [generatedQuestions, setGeneratedQuestions] = useState<Question[]>([]);
   
   const formRef = useRef<HTMLFormElement>(null);
