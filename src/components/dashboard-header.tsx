@@ -7,6 +7,7 @@ import {
   FileSignature,
   MessageSquareQuote,
   CalendarCheck,
+  UserSquare,
 } from "lucide-react"
 
 import {
@@ -56,6 +57,13 @@ export function DashboardHeader({ breadcrumb }: { breadcrumb?: string }) {
             >
               <FileSignature className="h-5 w-5" />
               Cover Letter Builder
+            </Link>
+            <Link
+              href="/dashboard/linkedin-optimizer"
+              className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+            >
+              <UserSquare className="h-5 w-5" />
+              LinkedIn Optimizer
             </Link>
             <Link
               href="/dashboard/linkedin-outreach"

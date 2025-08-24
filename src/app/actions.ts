@@ -5,6 +5,7 @@ import { generateCoverLetter } from '@/ai/flows/generate-cover-letter';
 import { generateLinkedInOutreachMessage } from '@/ai/flows/generate-linkedin-outreach-message';
 import { generateInterviewQuestions } from '@/ai/flows/generate-interview-questions';
 import { generateCareerPlan } from '@/ai/flows/generate-career-plan';
+import { generateLinkedInProfile } from '@/ai/flows/generate-linkedin-profile';
 
 export interface ActionState {
   message: string;
@@ -107,5 +108,26 @@ export async function generateCareerPlanAction(
   } catch (error) {
     console.error(error);
     return { message: "An error occurred while generating the career plan." };
+  }
+}
+
+export async function generateLinkedInProfileAction(
+  prevState: ActionState,
+  formData: FormData
+): Promise<ActionState> {
+  const currentRole = formData.get('currentRole') as string;
+  const field = formData.get('field') as string;
+  const keySkills = formData.get('keySkills') as string;
+
+  if (!currentRole || !field || !keySkills) {
+    return { message: "Please fill in all fields." };
+  }
+  
+  try {
+    const result = await generateLinkedInProfile({ currentRole, field, keySkills });
+    return { message: "success", output: result };
+  } catch (error) {
+    console.error(error);
+    return { message: "An error occurred while generating your LinkedIn profile." };
   }
 }

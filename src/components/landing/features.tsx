@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { FileText, FileSignature, Linkedin, MessageSquareQuote, CalendarCheck } from "lucide-react";
+import { FileText, FileSignature, Linkedin, MessageSquareQuote, CalendarCheck, UserSquare } from "lucide-react";
 
 const features = [
   {
@@ -11,6 +11,11 @@ const features = [
     icon: <FileSignature className="w-10 h-10 text-primary" />,
     title: "Cover Letter Generator",
     description: "Create tailored cover letters that highlight your strengths for any job description.",
+  },
+  {
+    icon: <UserSquare className="w-10 h-10 text-primary" />,
+    title: "LinkedIn Optimizer",
+    description: "Craft a professional headline and bio to make your profile stand out to recruiters.",
   },
   {
     icon: <Linkedin className="w-10 h-10 text-primary" />,
@@ -39,7 +44,7 @@ export function Features() {
             Everything you need to stand out in today's competitive job market.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature) => (
             <Card key={feature.title} className="text-center p-6 shadow-lg hover:shadow-xl transition-shadow">
               <CardHeader>

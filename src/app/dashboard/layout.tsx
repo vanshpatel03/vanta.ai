@@ -8,6 +8,7 @@ import {
   Settings,
   MessageSquareQuote,
   CalendarCheck,
+  UserSquare,
 } from "lucide-react"
 import { usePathname } from 'next/navigation'
 
@@ -24,6 +25,7 @@ import { Logo } from "@/components/logo"
 const navItems = [
   { href: "/dashboard/resume-builder", icon: FileText, label: "Resume Builder" },
   { href: "/dashboard/cover-letter-builder", icon: FileSignature, label: "Cover Letter Builder" },
+  { href: "/dashboard/linkedin-optimizer", icon: UserSquare, label: "LinkedIn Optimizer" },
   { href: "/dashboard/linkedin-outreach", icon: Linkedin, label: "LinkedIn Outreach" },
   { href: "/dashboard/interview-prep", icon: MessageSquareQuote, label: "Interview Prep" },
   { href: "/dashboard/career-plan", icon: CalendarCheck, label: "Career Plan" },
