@@ -10,6 +10,7 @@ import {
   CalendarCheck,
   UserSquare,
   Trophy,
+  LayoutDashboard,
 } from "lucide-react"
 import { usePathname } from 'next/navigation'
 
@@ -24,6 +25,7 @@ import { DashboardHeader } from "@/components/dashboard-header"
 import { Logo } from "@/components/logo"
 
 const navItems = [
+  { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard", exact: true },
   { href: "/dashboard/resume-builder", icon: FileText, label: "Resume Builder" },
   { href: "/dashboard/cover-letter-builder", icon: FileSignature, label: "Cover Letter Builder" },
   { href: "/dashboard/linkedin-optimizer", icon: UserSquare, label: "LinkedIn Optimizer" },
@@ -59,7 +61,7 @@ export default function DashboardLayout({
                     href={item.href}
                     className={cn(
                       "flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8",
-                      pathname.startsWith(item.href) ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:text-foreground"
+                      (item.exact ? pathname === item.href : pathname.startsWith(item.href)) ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
                     <item.icon className="h-5 w-5" />
@@ -93,7 +95,7 @@ export default function DashboardLayout({
       </aside>
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
         <DashboardHeader breadcrumb={
-          navItems.find(item => pathname.startsWith(item.href))?.label || (pathname.startsWith("/dashboard/settings") ? "Settings" : undefined)
+          navItems.find(item => item.exact ? pathname === item.href : pathname.startsWith(item.href))?.label || (pathname.startsWith("/dashboard/settings") ? "Settings" : undefined)
         } />
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
           {children}

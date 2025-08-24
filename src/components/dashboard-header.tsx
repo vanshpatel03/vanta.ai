@@ -9,6 +9,7 @@ import {
   CalendarCheck,
   UserSquare,
   Trophy,
+  LayoutDashboard
 } from "lucide-react"
 
 import {
@@ -45,6 +46,13 @@ export function DashboardHeader({ breadcrumb }: { breadcrumb?: string }) {
         <SheetContent side="left" className="sm:max-w-xs">
           <nav className="grid gap-6 text-lg font-medium">
             <Logo />
+            <Link
+              href="/dashboard"
+              className="flex items-center gap-4 px-2.5 text-foreground"
+            >
+              <LayoutDashboard className="h-5 w-5" />
+              Dashboard
+            </Link>
             <Link
               href="/dashboard/resume-builder"
               className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
@@ -106,14 +114,8 @@ export function DashboardHeader({ breadcrumb }: { breadcrumb?: string }) {
       </Sheet>
       <Breadcrumb className="hidden md:flex">
         <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/dashboard">Dashboard</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
           {breadcrumb && (
             <>
-              <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbPage>{breadcrumb}</BreadcrumbPage>
               </BreadcrumbItem>
