@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { FileText, FileSignature, Linkedin } from "lucide-react";
+import { FileText, FileSignature, Linkedin, MessageSquareQuote } from "lucide-react";
 
 const features = [
   {
@@ -17,6 +17,11 @@ const features = [
     title: "LinkedIn Outreach Assistant",
     description: "Craft personalized, engaging outreach messages to recruiters and hiring managers.",
   },
+   {
+    icon: <MessageSquareQuote className="w-10 h-10 text-primary" />,
+    title: "AI Interview Prep",
+    description: "Get AI-generated interview questions based on the job description and practice your answers.",
+  },
 ];
 
 export function Features() {
@@ -29,7 +34,7 @@ export function Features() {
             Everything you need to stand out in today's competitive job market.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature) => (
             <Card key={feature.title} className="text-center p-6 shadow-lg hover:shadow-xl transition-shadow">
               <CardHeader>

@@ -3,10 +3,11 @@
 import { generateResume } from '@/ai/flows/generate-resume';
 import { generateCoverLetter } from '@/ai/flows/generate-cover-letter';
 import { generateLinkedInOutreachMessage } from '@/ai/flows/generate-linkedin-outreach-message';
+import { generateInterviewQuestions } from '@/ai/flows/generate-interview-questions';
 
 export interface ActionState {
   message: string;
-  output?: string;
+  output?: any;
 }
 
 export async function generateResumeAction(
@@ -68,5 +69,22 @@ export async function generateLinkedInOutreachAction(
   } catch (error) {
     console.error(error);
     return { message: "An error occurred while generating the message." };
+  }
+}
+
+export async function generateInterviewQuestionsAction(
+  prevState: ActionState,
+  formData: FormData
+): Promise<ActionState> {
+  const jobDescription = formData.get('jobDescription') as string;
+  if (!jobDescription || jobDescription.length < 50) {
+    return { message: "Please provide a more detailed job description (at least 50 characters)." };
+  }
+  try {
+    const result = await generateInterviewQuestions({ jobDescription });
+    return { message: "success", output: result.questions };
+  } catch (error) {
+    console.error(error);
+    return { message: "An error occurred while generating interview questions." };
   }
 }

@@ -6,6 +6,7 @@ import {
   FileSignature,
   Linkedin,
   Settings,
+  MessageSquareQuote,
 } from "lucide-react"
 import { usePathname } from 'next/navigation'
 
@@ -23,6 +24,7 @@ const navItems = [
   { href: "/dashboard/resume-builder", icon: FileText, label: "Resume Builder" },
   { href: "/dashboard/cover-letter-builder", icon: FileSignature, label: "Cover Letter Builder" },
   { href: "/dashboard/linkedin-outreach", icon: Linkedin, label: "LinkedIn Outreach" },
+  { href: "/dashboard/interview-prep", icon: MessageSquareQuote, label: "Interview Prep" },
 ]
 
 export default function DashboardLayout({
